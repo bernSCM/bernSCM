@@ -1,0 +1,46 @@
+c     Analytical representation of the zeta-factor for a temperature
+c     range from 17.7 to 18.3 degrees celsius (Tchem). Rogers chemistry model
+c     was used to calculate the zeta-factor.
+
+      logical Texceed,CO2exceed !exceeded parametrization range
+
+      save Texceed,CO2exceed
+
+      if(.not.deriv)then
+c     ocean surface CO₂ saturation partial pressure deviation from preindustrial (ppm)
+        dpCO2s=(1.5568d0-1.3993d-2*Tchem)*dDIC
+     $       + (7.4706d0-0.20207d0*Tchem)*1d-3*dDIC**2
+     $       - (1.2748d0-0.12015d0*Tchem)*1d-5*dDIC**3
+     $       + (2.4491d0-0.12639d0*Tchem)*1d-7*dDIC**4
+     $       - (1.5468d0-0.15326d0*Tchem)*1d-10*dDIC**5
+
+        if(dpCO2s>1320.and..not.CO2exceed)then
+          write(0,*) "warning: CO2 parametrization range for dpCO2s exceeded (1320ppm)"
+          CO2exceed=.true.
+        endif  
+        if(T+Tchem>25.and..not.Texceed)then
+          write(0,*) "warning: temperature parametrization range for dpCO2s exceeded (25℃)"
+          Texceed=.true.
+        endif  
+        
+        if (Tdep) then
+          dpCO2s=(dpCO2s + co2_atm0)*exp(bufferT*T) - co2_atm0 ! Takahashi (1993)
+        endif
+
+      else
+c     d(dpCO2s)/d(dDIC)
+
+        dpCO2sdev=(1.5568d0-1.3993d-2*Tchem)
+     $       + 2d0*(7.4706-0.20207d0*Tchem)*1.0d-3*dDIC
+     $       - 3d0*(1.2748-0.12015d0*Tchem)*1.0d-5*dDIC**2
+     $       + 4d0*(2.4491-0.12639d0*Tchem)*1.0d-7*dDIC**3
+     $       - 5d0*(1.5468-0.15326d0*Tchem)*1.0d-10*dDIC**4
+        
+        if (Tdep) then
+          dpCO2sdev=dpCO2sdev*exp(bufferT*T)
+        endif
+
+        dpCO2s=dpCO2sdev !return derivative
+        
+      endif
+

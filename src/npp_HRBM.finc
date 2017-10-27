@@ -1,0 +1,65 @@
+c m atmospheric CO2 concentration (Gt)
+c model parameters (in parLand*.inc)
+
+      logical Texceed,CO2exceed !exceeded parametrization range
+
+      save Texceed,CO2exceed
+
+c     check parametrization range
+      if(m/ppmtoGt>1120.and..not.CO2exceed)then
+        write(0,*) "warning: CO2 parametrization range for NPP in HRBM exceeded (1120ppm)"
+        CO2exceed=.true.
+      endif  
+      if(T>5.and..not.Texceed)then
+        write(0,*) "warning: temperature parametrization range for NPP in HRBM exceeded (5K)"
+        Texceed=.true.
+      endif  
+
+
+      if(.not.deriv)then
+        if(CO2dep)then          !NPP for the HRBM model (GtC/yr)
+          NPP = -exp(3.672801d0)
+     $         +exp(-0.430818d0 +log(min(m/ppmtoGt,1274d0))*1)
+     $         -exp(-6.145559d0 +log(min(m/ppmtoGt,1274d0))*2)
+     $         +exp(-12.353878d0+log(min(m/ppmtoGt,1274d0))*3)
+     $         -exp(-19.010800d0+log(min(m/ppmtoGt,1274d0))*4)
+     $         +exp(-26.183752d0+log(min(m/ppmtoGt,1274d0))*5)
+     $         -exp(-34.317488d0+log(min(m/ppmtoGt,1274d0))*6)
+     $         -exp(-41.553715d0+log(min(m/ppmtoGt,1274d0))*7)
+     $         +exp(-48.265138d0+log(min(m/ppmtoGt,1274d0))*8)
+     $         -exp(-56.056095d0+log(min(m/ppmtoGt,1274d0))*9)
+     $         +exp(-64.818185d0+log(min(m/ppmtoGt,1274d0))*10)
+        else
+          NPP=NPP0
+        endif
+        
+        if (Tdep) NPP=NPP*      !Temperature dependence of HRBM NPP 
+     $       ( 1 + 0.11780208D+0*tanh(T/0.509312421D+02) + 0.24305130D-02*tanh(T/0.885326739D+01) )
+
+      else
+
+
+
+        if(CO2dep)then          !dNPP/dmA for the HRBM model
+          NPPdev=(
+     $         +exp(-0.430818d0)
+     $         -2*exp(-6.145559d0   +log(min(m/ppmtoGt,1274d0))*1)
+     $         +3*exp(-12.353878d0  +log(min(m/ppmtoGt,1274d0))*2)
+     $         -4*exp(-19.010800d0  +log(min(m/ppmtoGt,1274d0))*3)
+     $         +5*exp(-26.183752d0  +log(min(m/ppmtoGt,1274d0))*4)
+     $         -6*exp(-34.317488d0  +log(min(m/ppmtoGt,1274d0))*5)
+     $         -7*exp(-41.553715d0  +log(min(m/ppmtoGt,1274d0))*6)
+     $         +8*exp(-48.265138d0  +log(min(m/ppmtoGt,1274d0))*7)
+     $         -9*exp(-56.056095d0  +log(min(m/ppmtoGt,1274d0))*8)
+     $         +10*exp(-64.818185d0 +log(min(m/ppmtoGt,1274d0))*9)
+     $         )/ppmtoGt
+        else
+          NPPdev=0d0
+        endif
+        
+        if (Tdep) NPPdev=NPPdev !Temperature dependence
+     $       *( 1d0 + 0.11780208d+0*tanh(T/0.509312421d+02) + 0.24305130d-02*tanh(T/0.885326739d+01) )
+        
+        NPP=NPPdev !return value is derivative
+
+      endif

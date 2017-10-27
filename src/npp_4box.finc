@@ -1,0 +1,26 @@
+c     m atmospheric CO2 concentration (Gt)
+c     model parameters (in parNPP*.inc)
+      
+      if (.not.deriv) then
+
+c     NPP for the Bern 4 box model
+        if(CO2dep)then
+          m0 = co2_atm0*ppmtoGt !should correspond to global initial co2
+          dNPP = NPP0 * fert * log(m/m0)
+          NPP = dNPP+NPP0
+        else
+          NPP=NPP0
+        endif
+
+      else
+
+c     dNPP/dmA for the Bern 4 box model
+        if(CO2dep)then
+          NPPdev=NPP0 * fert * 1/m
+        else
+          NPPdev=0d0
+        endif
+        
+        NPP=NPPdev !return derivative
+
+      endif

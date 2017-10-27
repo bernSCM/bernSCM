@@ -1,0 +1,135 @@
+
+if ! test -f ./output/c4mip_a2_D0.1_BernSCM_t_f_CS25.dat
+then
+    echo "Use run_examples.sh to generate model and example output first!" >/dev/stderr
+    exit
+fi
+
+xmgrace -printfile ./plots/c_c4mip_a2_D01_BernSCM_t_f_CS25.eps -hdevice EPS -free -noask \
+ -pexec 'default font 0' \
+-pexec 'title " C4MIP SRES A2";; LEGEND .15000000000000000000, .85000000000000000000 ; LEGEND CHAR SIZE 1 ; yaxis label "Atmospheric CO2 (ppm)" ; yaxis label char size 1.3; xaxis label "Time (yr)"; xaxis label char size 1.3' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t_f_CS25.dat -bxy 1:8 \
+-pexec 's0 LEGEND "coupled" ; legend box pattern 0 ; legend box fill pattern 0 ; s0 linewidth 2; s0 linestyle 1; s0 color 1' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t_f0_CS25.dat -bxy 1:8 \
+-pexec 's1 LEGEND "Tonly" ; legend box pattern 0 ; legend box fill pattern 0 ; s1 linewidth 2; s1 linestyle 1; s1 color 2' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t0_f_CS25.dat -bxy 1:8 \
+-pexec 's2 LEGEND "Conly" ; legend box pattern 0 ; legend box fill pattern 0 ; s2 linewidth 2; s2 linestyle 1; s2 color 3' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t0_f0_CS25.dat -bxy 1:8 \
+-pexec 's3 LEGEND "uncoupled" ; legend box pattern 0 ; legend box fill pattern 0 ; s3 linewidth 2; s3 linestyle 1; s3 color 4' \
+-block ./output/c4mip_a2_D1I_BernSCM_t_f_CS25.dat -bxy 1:8 \
+-pexec 's4 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s4 linewidth 2; s4 linestyle 3; s4 color 1' \
+-block ./output/c4mip_a2_D1I_BernSCM_t_f0_CS25.dat -bxy 1:8 \
+-pexec 's5 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s5 linewidth 2; s5 linestyle 3; s5 color 2' \
+-block ./output/c4mip_a2_D1I_BernSCM_t0_f_CS25.dat -bxy 1:8 \
+-pexec 's6 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s6 linewidth 2; s6 linestyle 3; s6 color 3' \
+-block ./output/c4mip_a2_D1I_BernSCM_t0_f0_CS25.dat -bxy 1:8 \
+-pexec 's7 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s7 linewidth 2; s7 linestyle 3; s7 color 4' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t_f_CS25.dat -bxy 1:8 \
+-pexec 's8 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s8 linewidth 2; s8 linestyle 5; s8 color 1' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t_f0_CS25.dat -bxy 1:8 \
+-pexec 's9 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s9 linewidth 2; s9 linestyle 5; s9 color 2' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t0_f_CS25.dat -bxy 1:8 \
+-pexec 's10 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s10 linewidth 2; s10 linestyle 5; s10 color 3' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t0_f0_CS25.dat -bxy 1:8 \
+-pexec 's11 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s11 linewidth 2; s11 linestyle 5; s11 color 4' \
+-pexec 'with g0; xaxis label ""' \
+-pexec 'world 1850, 0, 2100, 1 ; autoscale yaxes; autoticks' \
+-pexec 'legend loctype world; legend 1870, 880' \
+-graph 1 \
+-pexec 'view g0.vx1, g0.vy1, g0.vx2, g0.vy2; world g0.wx1, g0.wy1, g0.wx2, g0.wy2; autoscale onread none; autoticks' \
+-pexec 'title " ";; LEGEND .12500000000000000000, .75000000000000000000 ; LEGEND CHAR SIZE 1 ; yaxis label "Global SAT change (K)" ; yaxis label char size 1.3; xaxis label "Time (yr)"; xaxis label char size 1.3' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t_f_CS25.dat -bxy 1:2 \
+-pexec 's0 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s0 linewidth 2; s0 linestyle 1; s0 color 1' \
+-pexec 'with g1' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t_f0_CS25.dat -bxy 1:2 \
+-pexec 's1 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s1 linewidth 2; s1 linestyle 1; s1 color 2' \
+-pexec 'with g1' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t0_f_CS25.dat -bxy 1:2 \
+-pexec 's2 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s2 linewidth 2; s2 linestyle 1; s2 color 3' \
+-pexec 'with g1' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t0_f0_CS25.dat -bxy 1:2 \
+-pexec 's3 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s3 linewidth 2; s3 linestyle 1; s3 color 4' \
+-pexec 'with g1' \
+-block ./output/c4mip_a2_D1I_BernSCM_t_f_CS25.dat -bxy 1:2 \
+-pexec 's4 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s4 linewidth 2; s4 linestyle 3; s4 color 1' \
+-block ./output/c4mip_a2_D1I_BernSCM_t_f0_CS25.dat -bxy 1:2 \
+-pexec 's5 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s5 linewidth 2; s5 linestyle 3; s5 color 2' \
+-block ./output/c4mip_a2_D1I_BernSCM_t0_f_CS25.dat -bxy 1:2 \
+-pexec 's6 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s6 linewidth 2; s6 linestyle 3; s6 color 3' \
+-block ./output/c4mip_a2_D1I_BernSCM_t0_f0_CS25.dat -bxy 1:2 \
+-pexec 's7 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s7 linewidth 2; s7 linestyle 3; s7 color 4' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t_f_CS25.dat -bxy 1:2 \
+-pexec 's8 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s8 linewidth 2; s8 linestyle 5; s8 color 1' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t_f0_CS25.dat -bxy 1:2 \
+-pexec 's9 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s9 linewidth 2; s9 linestyle 5; s9 color 2' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t0_f_CS25.dat -bxy 1:2 \
+-pexec 's10 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s10 linewidth 2; s10 linestyle 5; s10 color 3' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t0_f0_CS25.dat -bxy 1:2 \
+-pexec 's11 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s11 linewidth 2; s11 linestyle 5; s11 color 4' \
+-pexec 'with g1; xaxis label ""' \
+-pexec 'world 1850, 0, 2100, 1 ; autoscale yaxes; autoticks' \
+-graph 2 \
+-pexec 'view g0.vx1, g0.vy1, g0.vx2, g0.vy2; world g0.wx1, g0.wy1, g0.wx2, g0.wy2; autoscale onread none; autoticks' \
+-pexec 'title " ";; LEGEND .10000000000000000000, .65000000000000000000 ; LEGEND CHAR SIZE 1 ; yaxis label "Land C uptake (GtC/yr)" ; yaxis label char size 1.3; xaxis label "Time (yr)"; xaxis label char size 1.3' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t_f_CS25.dat -bxy 1:14 \
+-pexec 's0 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s0 linewidth 2; s0 linestyle 1; s0 color 1' \
+-pexec 'with g2' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t_f0_CS25.dat -bxy 1:14 \
+-pexec 's1 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s1 linewidth 2; s1 linestyle 1; s1 color 2' \
+-pexec 'with g2' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t0_f_CS25.dat -bxy 1:14 \
+-pexec 's2 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s2 linewidth 2; s2 linestyle 1; s2 color 3' \
+-pexec 'with g2' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t0_f0_CS25.dat -bxy 1:14 \
+-pexec 's3 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s3 linewidth 2; s3 linestyle 1; s3 color 4' \
+-pexec 'with g2' \
+-block ./output/c4mip_a2_D1I_BernSCM_t_f_CS25.dat -bxy 1:14 \
+-pexec 's4 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s4 linewidth 2; s4 linestyle 3; s4 color 1' \
+-block ./output/c4mip_a2_D1I_BernSCM_t_f0_CS25.dat -bxy 1:14 \
+-pexec 's5 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s5 linewidth 2; s5 linestyle 3; s5 color 2' \
+-block ./output/c4mip_a2_D1I_BernSCM_t0_f_CS25.dat -bxy 1:14 \
+-pexec 's6 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s6 linewidth 2; s6 linestyle 3; s6 color 3' \
+-block ./output/c4mip_a2_D1I_BernSCM_t0_f0_CS25.dat -bxy 1:14 \
+-pexec 's7 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s7 linewidth 2; s7 linestyle 3; s7 color 4' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t_f_CS25.dat -bxy 1:14 \
+-pexec 's8 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s8 linewidth 2; s8 linestyle 5; s8 color 1' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t_f0_CS25.dat -bxy 1:14 \
+-pexec 's9 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s9 linewidth 2; s9 linestyle 5; s9 color 2' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t0_f_CS25.dat -bxy 1:14 \
+-pexec 's10 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s10 linewidth 2; s10 linestyle 5; s10 color 3' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t0_f0_CS25.dat -bxy 1:14 \
+-pexec 's11 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s11 linewidth 2; s11 linestyle 5; s11 color 4' \
+-pexec 'world 1850, 0, 2100, 1 ; autoscale yaxes; autoticks' \
+-graph 3 \
+-pexec 'view g0.vx1, g0.vy1, g0.vx2, g0.vy2; world g0.wx1, g0.wy1, g0.wx2, g0.wy2; autoscale onread none; autoticks' \
+-pexec 'title " ";; LEGEND .07500000000000000000, .55000000000000000000 ; LEGEND CHAR SIZE 1 ; yaxis label "Ocean C uptake (GtC/yr)" ; yaxis label char size 1.3; xaxis label "Time (yr)"; xaxis label char size 1.3' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t_f_CS25.dat -bxy 1:13 \
+-pexec 's0 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s0 linewidth 2; s0 linestyle 1; s0 color 1' \
+-pexec 'with g3' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t_f0_CS25.dat -bxy 1:13 \
+-pexec 's1 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s1 linewidth 2; s1 linestyle 1; s1 color 2' \
+-pexec 'with g3' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t0_f_CS25.dat -bxy 1:13 \
+-pexec 's2 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s2 linewidth 2; s2 linestyle 1; s2 color 3' \
+-pexec 'with g3' \
+-block ./output/c4mip_a2_D0.1_BernSCM_t0_f0_CS25.dat -bxy 1:13 \
+-pexec 's3 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s3 linewidth 2; s3 linestyle 1; s3 color 4' \
+-pexec 'with g3' \
+-block ./output/c4mip_a2_D1I_BernSCM_t_f_CS25.dat -bxy 1:13 \
+-pexec 's4 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s4 linewidth 2; s4 linestyle 3; s4 color 1' \
+-block ./output/c4mip_a2_D1I_BernSCM_t_f0_CS25.dat -bxy 1:13 \
+-pexec 's5 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s5 linewidth 2; s5 linestyle 3; s5 color 2' \
+-block ./output/c4mip_a2_D1I_BernSCM_t0_f_CS25.dat -bxy 1:13 \
+-pexec 's6 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s6 linewidth 2; s6 linestyle 3; s6 color 3' \
+-block ./output/c4mip_a2_D1I_BernSCM_t0_f0_CS25.dat -bxy 1:13 \
+-pexec 's7 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s7 linewidth 2; s7 linestyle 3; s7 color 4' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t_f_CS25.dat -bxy 1:13 \
+-pexec 's8 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s8 linewidth 2; s8 linestyle 5; s8 color 1' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t_f0_CS25.dat -bxy 1:13 \
+-pexec 's9 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s9 linewidth 2; s9 linestyle 5; s9 color 2' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t0_f_CS25.dat -bxy 1:13 \
+-pexec 's10 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s10 linewidth 2; s10 linestyle 5; s10 color 3' \
+-block ./output/c4mip_a2_D10QI_BernSCM_t0_f0_CS25.dat -bxy 1:13 \
+-pexec 's11 LEGEND "" ; legend box pattern 0 ; legend box fill pattern 0 ; s11 linewidth 2; s11 linestyle 5; s11 color 4' \
+-pexec 'world 1850, 0, 2100, 1 ; autoscale yaxes; autoticks' \
+-pexec 'ARRANGE(2, 2, 0.1, 0.35, 0.2)' \
