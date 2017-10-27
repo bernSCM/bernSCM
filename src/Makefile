@@ -32,11 +32,11 @@ debug:	$(DEBUGOBJS)
 %.for:	%.F $(DEPEND)
 	rm -f $*.for
 	$(FCOM) $(CPPFLAGS) $*.F > $*.for
-	sed -i '/^\#/d' $*.for #optional clean-up
+	sed -i '/^\#/d' $*.for
 
 %.inc:	%.inc.F #$(DEPEND)
 	$(FCOM) $(CPPFLAGS) $*.inc.F > $*.inc
-	sed -i '/^\#/d' $*.inc #optional clean-up
+	sed -i '/^\#/d' $*.inc
 
 $(OBJS): %.o: %.for $(DEPEND)
 	$(FCOM) -c -o $@ $(COMPFLAGS) $*.for
