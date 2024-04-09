@@ -69,7 +69,7 @@ c     state variables
 
       integer
      $     nscalemax             !maximal number of finite timescales of boxes
-      parameter(nscalemax=10)
+      parameter(nscalemax=6)
 
       TYPE :: PIRF              !IRF parameter set
       sequence
